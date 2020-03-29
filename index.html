@@ -33,7 +33,7 @@
        function getInputValue(){
          let cont = document.getElementById("submit").value;
   
-                  fetch("http://api.weatherstack.com/current?access_key=ee64e79f8b462dea42dfa02084e38749&query="+cont+"").then(response => {
+                  fetch("https://api.weatherstack.com/current?access_key=ee64e79f8b462dea42dfa02084e38749&query="+cont+"").then(response => {
           return response.json();
   }).then(data => {
   
