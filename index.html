@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Live Weather</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <header>Live Weather</header>
+    <div class="sub">
+        <input type="text" id="submit" placeholder="Enter Place Name">
+        <button type="button" onclick="getInputValue();">SEARCH</button>
+    </div>
+
+
+
+
+
+
+
+    <script>
+
+        var root = document.body;
+        
+        var section = document.createElement("section");
+       section.classList.add("main");
+      root.append(section);
+
+  
+       function getInputValue(){
+         let cont = document.getElementById("submit").value;
+  
+                  fetch("http://api.weatherstack.com/current?access_key=ee64e79f8b462dea42dfa02084e38749&query="+cont+"").then(response => {
+          return response.json();
+  }).then(data => {
+  
+  var item1 = function(){
+
+          var item = document.createElement("div");
+           item.classList.add("item");
+           section.append(item);
+  
+           var details = document.createElement("div");
+           details.classList.add("details");
+           item.append(details);
+  
+              // phone modal
+  
+               var title = document.createElement("p"); 
+               var Content = document.createTextNode("Name : "+data.location.name); 
+               title.classList.add("title");
+               title.appendChild(Content); 
+               details.append(title);
+  
+              // phone price
+  
+  
+               var price = document.createElement("p"); 
+               var Content = document.createTextNode("Country : "+data.location.country); 
+               price.classList.add("list");
+               price.appendChild(Content); 
+               details.append(price);
+  
+                 var price = document.createElement("p"); 
+               var Content = document.createTextNode("Region : "+data.location.region); 
+               price.classList.add("list");
+               price.appendChild(Content); 
+               details.append(price);
+  
+  
+                 var price = document.createElement("p"); 
+               var Content = document.createTextNode("Latitude : "+data.location.lat); 
+               price.classList.add("list");
+               price.appendChild(Content); 
+               details.append(price);
+  
+  
+                 var price = document.createElement("p"); 
+               var Content = document.createTextNode("Longitude : "+data.location.lon); 
+               price.classList.add("list");
+               price.appendChild(Content); 
+               details.append(price);
+               
+        }
+  
+        var item2 = function(){
+          var item = document.createElement("div");
+           item.classList.add("item");
+           section.append(item);
+      
+           var img = document.createElement("img");
+           img.setAttribute("src",data.current.weather_icons[0]);
+           img.setAttribute("alt",data.current.weather_descriptions[0]);
+           img.setAttribute("width","300px");
+           img.setAttribute("height","350px");
+           item.append(img);
+  
+           var details = document.createElement("div");
+           details.classList.add("details");
+           item.append(details);
+  
+              // phone modal
+  
+               var title = document.createElement("p"); 
+               var Content = document.createTextNode("Temperature : "+data.current.temperature); 
+               title.classList.add("title");
+               title.appendChild(Content); 
+               details.append(title);
+  
+              // phone price
+  
+  
+               var price = document.createElement("p"); 
+               var Content = document.createTextNode("Climate : "+data.current.weather_descriptions[0]); 
+               price.classList.add("list");
+               price.appendChild(Content); 
+               details.append(price);
+  
+                 var price = document.createElement("p"); 
+               var Content = document.createTextNode("Wind Speed : "+data.current.wind_speed); 
+               price.classList.add("list");
+               price.appendChild(Content); 
+               details.append(price);
+  
+  
+                 var price = document.createElement("p"); 
+               var Content = document.createTextNode("Pressure : "+data.current.pressure); 
+               price.classList.add("list");
+               price.appendChild(Content); 
+               details.append(price);
+  
+  
+                 var price = document.createElement("p"); 
+               var Content = document.createTextNode("Humidity : "+data.current.humidity); 
+               price.classList.add("list");
+               price.appendChild(Content); 
+               details.append(price);
+        }
+  
+        item1();
+        item2();
+  })
+    
+       }
+  
+  
+  
+  
+   
+  
+         
+  
+  
+     
+  
+  </script>
+</body>
+</html>
